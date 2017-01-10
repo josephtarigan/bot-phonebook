@@ -17,9 +17,9 @@ public class PhonebookConfiguration
 	@Bean
     public DataSource getDataSource()
     {
-        String dbUrl=System.getenv("com.psql.db_url");
-        String username=System.getenv("com.psql.username");
-        String password=System.getenv("com.psql.password");
+        String dbUrl=System.getenv("JDBC_DATABASE_URL");
+        String username=System.getenv("JDBC_DATABASE_USERNAME");
+        String password=System.getenv("JDBC_DATABASE_PASSWORD");
         
         DriverManagerDataSource ds=new DriverManagerDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
