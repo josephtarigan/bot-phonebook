@@ -1,0 +1,63 @@
+
+apply plugin: 'org.springframework.boot'
+
+buildscript
+{
+	repositories
+	{
+		mavenCentral()
+	}
+
+	dependencies
+	{
+		classpath('org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE')
+	}
+}
+
+
+
+jar
+{
+	baseName = 'bot-phonebook'
+	version = '0.1.0'
+}
+
+repositories
+{
+	jcenter()
+}
+
+configurations
+{
+	providedRuntime
+}
+
+task (distclean, dependsOn: clean) <<
+{
+	delete ".gradle"
+}
+
+configure(distclean)
+{
+	group = 'Build'
+	description = 'Clean the build result and the .gradle directory'
+}
+
+dependencyManagement {
+        dependencies {
+            dependency 'com.squareup.retrofit2:converter-jackson:2.1.0'
+            dependency 'com.squareup.retrofit2:retrofit:2.1.0'
+	}
+    }
+
+dependencies
+{
+	compile('org.springframework.boot:spring-boot-starter-web:1.4.3.RELEASE')
+	compile('org.springframework:spring-jdbc:4.3.5.RELEASE')
+	compile('org.postgresql:postgresql:9.4.1212')
+	compile('com.google.code.gson:gson:2.8.0')
+	compile('com.linecorp.bot:line-bot-api-client:1.4.0')
+	compile('com.linecorp.bot:line-bot-model:1.4.0')
+	compile('org.postgresql:postgresql:9.4.1212.jre7')
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat:1.4.3.RELEASE')
+}
