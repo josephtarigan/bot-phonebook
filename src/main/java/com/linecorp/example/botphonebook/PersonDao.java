@@ -9,5 +9,4 @@ public interface PersonDao
     public List<Person> get();
     public List<Person> getByName(String aName);
     public int registerPerson(String aName, String aPhoneNumber);
-    public int dataExist(String aName);
 };

@@ -18,8 +18,7 @@ public class PersonDaoImpl implements PersonDao
 {
     private final static String SQL_SELECT_ALL="SELECT id, name, phone_number FROM phonebook";
     private final static String SQL_GET_BY_NAME=SQL_SELECT_ALL + " WHERE LOWER(name) LIKE LOWER(?);";
-    private final static String SQL_EXIST="EXISTS (" + SQL_SELECT_ALL + ")";
-    private final static String SQL_REGISTER="INSERT INTO phonebook (name, phone_number) VALUES (?, ?) ";
+    private final static String SQL_REGISTER="INSERT INTO phonebook (name, phone_number) VALUES (?, ?);";
     
     private JdbcTemplate mJdbc;
     
@@ -89,10 +88,5 @@ public class PersonDaoImpl implements PersonDao
     public int registerPerson(String aName, String aPhoneNumber)
     {
         return mJdbc.update(SQL_REGISTER, new Object[]{aName, aPhoneNumber});
-    }
-
-    public int dataExist(String aName)
-    {
-        return mJdbc.update(SQL_EXIST, new Object[]{aName});
     }
 };
