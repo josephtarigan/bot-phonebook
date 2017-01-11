@@ -40,7 +40,6 @@ com.linecorp.channel_access_token=<your_channel_access_token>
 	```java
 	public interface PersonDao
 {
-    	public Long post(Person aPerson);
     	public List<Person> get();
     	public List<Person> getByName(String aName);
     	public int registerPerson(String aName, String aPhoneNumber);
@@ -56,19 +55,6 @@ com.linecorp.channel_access_token=<your_channel_access_token>
     public int registerPerson(String aName, String aPhoneNumber)
     {
         return mJdbc.update(SQL_REGISTER, new Object[]{aName, aPhoneNumber});
-    }
-	```
-	
-	```java
-	public Long post(Person aPerson)
-    {
-        SimpleJdbcInsert insert=new SimpleJdbcInsert(mJdbc)
-            .withTableName("phonebook")
-            .usingGeneratedKeyColumns("id");
-        Map<String, Object> fields=new HashMap<String, Object>();
-        fields.put("name", aPerson.name);
-        fields.put("phone_number", aPerson.phoneNumber);
-        return insert.executeAndReturnKey(fields).longValue();
     }
 	```
 	

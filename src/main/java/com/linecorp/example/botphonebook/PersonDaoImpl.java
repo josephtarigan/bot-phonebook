@@ -64,17 +64,6 @@ public class PersonDaoImpl implements PersonDao
         mJdbc=new JdbcTemplate(aDataSource);
     }
 
-    public Long post(Person aPerson)
-    {
-        SimpleJdbcInsert insert=new SimpleJdbcInsert(mJdbc)
-            .withTableName("phonebook")
-            .usingGeneratedKeyColumns("id");
-        Map<String, Object> fields=new HashMap<String, Object>();
-        fields.put("name", aPerson.name);
-        fields.put("phone_number", aPerson.phoneNumber);
-        return insert.executeAndReturnKey(fields).longValue();
-    }
-
     public List<Person> get()
     {
         return mJdbc.query(SQL_SELECT_ALL, MULTIPLE_RS_EXTRACTOR);
