@@ -26,7 +26,7 @@ public class PhonebookController
     PersonDao mDao;
     
     @Autowired
-    @Qualifier("com.linecorp.channel_access_token")
+    @Qualifier("com.linecorp.channel_secret")
     String lChannelSecret;
     
     @Autowired
@@ -101,18 +101,22 @@ public class PhonebookController
             }
             else
             {
-                System.out.println("Words passed: " + target);
                 name = aText.substring(aText.indexOf("\"") + 1, aText.lastIndexOf("\""));
+                System.out.println("Name: " + name);
                 phoneNumber = aText.substring(aText.indexOf("#") + 1);
+                System.out.println("Phone Number: " + phoneNumber);
                 String status = RegProcessor(name, phoneNumber);
                 replyToUser(aReplyToken, status);
+                return;
             }
         }
         else if(intent.equalsIgnoreCase("find"))
         {
             name = aText.substring(aText.indexOf("\"") + 1, aText.lastIndexOf("\""));
+            System.out.println("Name: " + name);
             String txtMessage = FindProcessor(name);
             replyToUser(aReplyToken, txtMessage);
+            return;
         }
         
         // if msg is invalid
@@ -124,8 +128,8 @@ public class PhonebookController
     
     private String RegProcessor(String aName, String aPhoneNumber){
         String regStatus;
-        int exist=mDao.dataExist(aName);
-        if(exist==1)
+        String exist = FindProcessor(aName);
+        if(exist=="Person not found")
         {
             int reg=mDao.registerPerson(aName, aPhoneNumber);
             if(reg==1)
@@ -152,15 +156,14 @@ public class PhonebookController
         {
             for (int i=0; i<self.size(); i++){
                 Person prs=self.get(i);
-                txt=txt+"\n";
+                txt=txt+"\n\n";
                 txt=txt+getPersonString(prs);
-                txt=txt+"\n";
             }
             
         }
         else
         {
-            txt="Employee not found";
+            txt="Person not found";
         }
         return txt;
     }
