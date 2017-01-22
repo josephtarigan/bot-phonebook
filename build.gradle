@@ -56,8 +56,8 @@ dependencies
 	compile('org.springframework:spring-jdbc:4.3.5.RELEASE')
 	compile('org.postgresql:postgresql:9.4.1212')
 	compile('com.google.code.gson:gson:2.8.0')
-	compile('com.linecorp.bot:line-bot-api-client:1.4.0')
-	compile('com.linecorp.bot:line-bot-model:1.4.0')
+	compile('com.linecorp.bot:line-bot-api-client:1.6.0')
+	compile('com.linecorp.bot:line-bot-model:1.6.0')
 	compile('org.postgresql:postgresql:9.4.1212.jre7')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat:1.4.3.RELEASE')
 }
