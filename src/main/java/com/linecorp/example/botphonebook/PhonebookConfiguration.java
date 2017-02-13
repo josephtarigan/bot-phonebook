@@ -24,8 +24,6 @@ public class PhonebookConfiguration
         DriverManagerDataSource ds=new DriverManagerDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
         ds.setUrl(dbUrl);
-        ds.setUsername(username);
-        ds.setPassword(password);
         
         return ds;
     }
