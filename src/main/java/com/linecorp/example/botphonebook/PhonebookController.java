@@ -97,7 +97,9 @@ public class PhonebookController
             String target=words.length>1 ? words[1] : "";
             if (target.length()<=3)
             {
-                msg = "Need more than 3 character to find person";
+                msg = "Need more than 3 character to register person";
+                replyToUser(aReplyToken, msg);
+                return;
             }
             else
             {
